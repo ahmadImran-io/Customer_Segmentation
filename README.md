@@ -81,6 +81,36 @@ customer_segments.csv
 
 This file contains one row per customer and includes the customer ID, country, cluster label, and clustering features.
 
+## Results
+
+The notebook compares candidate cluster counts using:
+
+- **Inertia** to identify the elbow point
+- **Silhouette score** to measure cluster separation
+- **Davies-Bouldin score** to measure within-cluster compactness
+- **Calinski-Harabasz score** to compare cluster and within-cluster variance
+
+Cluster 2 is excluded as the final choice because it generally reduces the analysis to a coarse split between active and inactive customers. The model evaluates `K >= 3` and selects the candidate with the highest silhouette score.
+
+Customer data typically forms a continuum rather than distinct groups, so a silhouette score around `0.25-0.30` indicates moderate structure. The final segment profiles should be interpreted as actionable behavioural groups rather than perfectly separated customer populations.
+
+## Cluster Visualization
+
+The notebook generates the following visualizations:
+
+- PCA plot showing customers in two dimensions
+- Bar chart showing the number of customers in each cluster
+- Segment feature heatmap comparing each cluster with the overall customer average
+- Mean and median feature tables for each segment
+
+Run every notebook cell to display these visualizations:
+
+```powershell
+python -m jupyter notebook customer_segmentation.ipynb
+```
+
+When using the notebook in Jupyter or VS Code, these charts appear directly below the corresponding code cells.
+
 ## Files
 
 ```text
